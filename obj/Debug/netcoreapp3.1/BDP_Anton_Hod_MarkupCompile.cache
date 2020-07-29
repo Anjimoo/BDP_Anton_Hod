@@ -1,5 +1,5 @@
 ﻿BDP_Anton_Hod
-1.0.0.0
+
 
 winexe
 C#
@@ -12,7 +12,7 @@ TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\anton\Desktop\BD_Project\BDP_Anton_Hod\App.xaml
 11151548125
 
-81604382784
+6224027935
 194-1161013672
 MainWindow.xaml;
 

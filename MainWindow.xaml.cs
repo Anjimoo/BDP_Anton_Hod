@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+
+
 
 namespace BDP_Anton_Hod
 {
@@ -20,14 +23,37 @@ namespace BDP_Anton_Hod
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string FileName { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        
+
+        private void importButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            Nullable<bool> result = dialog.ShowDialog();
+            if(result == true)
+            {
+                this.FileName = dialog.FileName;
+                consoleTextBlock.Text = "Imported file is : " + dialog.FileName;
+            }
+        }
+
+        private void standartButton_Click(object sender, RoutedEventArgs e)
+        {
+            StandartAnalysis standartAnalysis = new StandartAnalysis(this.FileName);
+            standartAnalysis.analyse(consoleTextBlock);   
+        }
+
+        private void MRButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+        
     }
 }

@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BDP_Anton_Hod"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="480" Width="820" SizeToContent="Manual" Topmost="True" ResizeMode="NoResize">
     <Grid>
-        <Button x:Name="standartStart" Content="Standart Data Analysis" HorizontalAlignment="Left" VerticalAlignment="Top" Click="button_Click" Height="80" Width="200" Margin="140,60,0,0"/>
-        <Button x:Name="MRButton" Content="Map Reduce Data Analysis" HorizontalAlignment="Left" Margin="460,60,0,0" VerticalAlignment="Top" Width="200" Height="80" IsDefault="True"/>
+        <Button x:Name="standartButton" Content="Standart Data Analysis" HorizontalAlignment="Left" VerticalAlignment="Top" Click="standartButton_Click" Height="80" Width="200" Margin="155,60,0,0"/>
+        <Button x:Name="MRButton" Content="Map Reduce Data Analysis" HorizontalAlignment="Left" Margin="460,60,0,0" VerticalAlignment="Top" Width="200" Height="80" IsDefault="True" Click="MRButton_Click"/>
         <Border x:Name="textBlockBorder" BorderThickness="1" BorderBrush="Black" Width="700" Height="237" Margin="50,170,50,27">
-            <TextBlock x:Name="consoleTextBlock" HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="237" Width="700"/>
+            <TextBlock x:Name="consoleTextBlock" HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="234" Width="698"/>
         </Border>
+        <Button x:Name="importButton" Content="Import File" HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top" Height="27" Width="160" Click="importButton_Click"/>
     </Grid>
 </Window>

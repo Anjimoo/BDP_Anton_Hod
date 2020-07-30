@@ -17,21 +17,30 @@ namespace BDP_Anton_Hod
             List<YearlyPrecipitation> list = new List<YearlyPrecipitation>();
             while (reader.Read())
             {
-                var row = new YearlyPrecipitation
+                YearlyPrecipitation row = new YearlyPrecipitation
                 {
                     Year = (int)reader.GetDouble(0),
-                    JanuaryPrecipitation = reader.GetDouble(1),
-                    FebruaryPrecipitation = reader.GetDouble(2),
-                    MarchPrecipitation = reader.GetDouble(3),
-                    AprilPrecipitation = reader.GetDouble(4),
-                    MayPrecipitation = reader.GetDouble(5),
-                    JunePrecipitation = reader.GetDouble(6),
-                    JulyPrecipitation = reader.GetDouble(7),
-                    AugustPrecipitation = reader.GetDouble(8),
-                    SeptemberPrecipitation = reader.GetDouble(9),
-                    OctoberPrecipitation = reader.GetDouble(10),
-                    NovemberPrecipitation = reader.GetDouble(11),
-                    DecemberPrecipitation = reader.GetDouble(12),
+                    WinterPrecipitation = new SeasonPrecipitation
+                    {
+                        Season = Season.Winter,
+                        MonthlyPrecipitation =
+                        {
+                            { Month.December, reader.GetDouble(12) },
+                            { Month.January, reader.GetDouble(1) },
+                        }
+                    },
+                    SpringPrecipitation = new SeasonPrecipitation
+                    {
+
+                    },
+                    SummerPrecipitation = new SeasonPrecipitation
+                    {
+
+                    },
+                    AutumnPrecipitation = new SeasonPrecipitation
+                    {
+
+                    }
                 };
             }
 
@@ -43,7 +52,7 @@ namespace BDP_Anton_Hod
             var stream = File.Open(fileName, FileMode.Open, FileAccess.Read);
 
             IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
-            
+
 
             return reader;
 

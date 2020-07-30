@@ -26,6 +26,9 @@ namespace BDP_Anton_Hod
             _rows = FileParser.ParseFile(_fileName);
 
             SetMinMaxPrecipitationYears();
+
+            
+
         }
 
         public void analyse(System.Windows.Controls.TextBlock consoleTextBlock)

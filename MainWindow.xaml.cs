@@ -47,10 +47,8 @@ namespace BDP_Anton_Hod
         {
             StandartAnalysis standartAnalysis = new StandartAnalysis(this.FileName);
             standartAnalysis.Analyse();
-        
-            consoleTextBlock.Text += MessageCreator.YearSeasonMaxPrecipitationMessage(standartAnalysis.YearMaxSeason, standartAnalysis.MaxSeasonPrecipitation);
-            consoleTextBlock.Text += MessageCreator.YearSeasonMinPrecipitationMessage(standartAnalysis.YearMinSeason, standartAnalysis.MinSeasonPrecipitation);
-
+            consoleTextBlock.Text += MessageCreator.MakeMaximumMessage(standartAnalysis.YearMaxSeason, standartAnalysis.MaxSeasonPrecipitation);
+            consoleTextBlock.Text += MessageCreator.MakeMinimumMessage(standartAnalysis.YearMinSeason, standartAnalysis.MinSeasonPrecipitation);
         }
         // Map Reduce Analysis
         private void MRButton_Click(object sender, RoutedEventArgs e)

@@ -46,7 +46,11 @@ namespace BDP_Anton_Hod
         private void standartButton_Click(object sender, RoutedEventArgs e)
         {
             StandartAnalysis standartAnalysis = new StandartAnalysis(this.FileName);
-            standartAnalysis.analyse(consoleTextBlock);   
+            standartAnalysis.Analyse();
+        
+            consoleTextBlock.Text += MessageCreator.YearSeasonMaxPrecipitationMessage(standartAnalysis.YearMaxSeason, standartAnalysis.MaxSeasonPrecipitation);
+            consoleTextBlock.Text += MessageCreator.YearSeasonMinPrecipitationMessage(standartAnalysis.YearMinSeason, standartAnalysis.MinSeasonPrecipitation);
+
         }
 
         private void MRButton_Click(object sender, RoutedEventArgs e)

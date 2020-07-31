@@ -62,6 +62,7 @@ namespace BDP_Anton_Hod
                         }
                     }
                 };
+                list.Add(row);
             }
 
             return list;

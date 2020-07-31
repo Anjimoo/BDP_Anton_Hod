@@ -54,41 +54,72 @@ namespace BDP_Anton_Hod
 
         public double TotalYearPreticipation
         {
+            // get total preticipation in year
             get
             {
-                double sum = WinterPrecipitation.TotalPrecipitation + SpringPrecipitation.TotalPrecipitation +
+                return WinterPrecipitation.TotalPrecipitation + SpringPrecipitation.TotalPrecipitation +
                     SummerPrecipitation.TotalPrecipitation + AutumnPrecipitation.TotalPrecipitation;
-                return sum;
             }
         }
+
+        public KeyValuePair<Season, double> MaxSeasonPrecipitation
+        {
+            get
+            {
+                return GetSeasonsPrecipitationDict().Aggregate((kvp1, kvp2) => kvp1.Value > kvp2.Value ? kvp1 : kvp2);
+            }
+        }
+
+        public KeyValuePair<Season, double> MinSeasonPrecipitation
+        {
+            get
+            {
+                return GetSeasonsPrecipitationDict().Aggregate((kvp1, kvp2) => kvp1.Value < kvp2.Value ? kvp1 : kvp2);
+            }
+        }
+
         public KeyValuePair<Month, double> MaxMonthPrecipitation
         {
+            // get month with maximum preticipation
             get 
             {
-                Dictionary<Month, double> seasonsPrecipitation = new Dictionary<Month, double>();
+                Dictionary<Month, double> monthsPrecipitation = new Dictionary<Month, double>();
 
-                seasonsPrecipitation.Add(WinterPrecipitation.MaxPrecipitation.Key, WinterPrecipitation.MaxPrecipitation.Value);
-                seasonsPrecipitation.Add(SpringPrecipitation.MaxPrecipitation.Key, SpringPrecipitation.MaxPrecipitation.Value);
-                seasonsPrecipitation.Add(SummerPrecipitation.MaxPrecipitation.Key, SummerPrecipitation.MaxPrecipitation.Value);
-                seasonsPrecipitation.Add(AutumnPrecipitation.MaxPrecipitation.Key, AutumnPrecipitation.MaxPrecipitation.Value);
+                monthsPrecipitation.Add(WinterPrecipitation.MaxPrecipitation.Key, WinterPrecipitation.MaxPrecipitation.Value);
+                monthsPrecipitation.Add(SpringPrecipitation.MaxPrecipitation.Key, SpringPrecipitation.MaxPrecipitation.Value);
+                monthsPrecipitation.Add(SummerPrecipitation.MaxPrecipitation.Key, SummerPrecipitation.MaxPrecipitation.Value);
+                monthsPrecipitation.Add(AutumnPrecipitation.MaxPrecipitation.Key, AutumnPrecipitation.MaxPrecipitation.Value);
 
-                return seasonsPrecipitation.Aggregate((kvp1, kvp2) => kvp1.Value > kvp2.Value ? kvp1 : kvp2);
+                return monthsPrecipitation.Aggregate((kvp1, kvp2) => kvp1.Value > kvp2.Value ? kvp1 : kvp2);
             }
         }
 
         public KeyValuePair<Month, double> MinMonthPrecipitation
         {
+            // get month with minimum preticipation
             get
             {
-                Dictionary<Month, double> seasonsPrecipitation = new Dictionary<Month, double>();
+                Dictionary<Month, double> monthsPrecipitation = new Dictionary<Month, double>();
 
-                seasonsPrecipitation.Add(WinterPrecipitation.MinPrecipitation.Key, WinterPrecipitation.MinPrecipitation.Value);
-                seasonsPrecipitation.Add(SpringPrecipitation.MinPrecipitation.Key, SpringPrecipitation.MinPrecipitation.Value);
-                seasonsPrecipitation.Add(SummerPrecipitation.MinPrecipitation.Key, SummerPrecipitation.MinPrecipitation.Value);
-                seasonsPrecipitation.Add(AutumnPrecipitation.MinPrecipitation.Key, AutumnPrecipitation.MinPrecipitation.Value);
+                monthsPrecipitation.Add(WinterPrecipitation.MinPrecipitation.Key, WinterPrecipitation.MinPrecipitation.Value);
+                monthsPrecipitation.Add(SpringPrecipitation.MinPrecipitation.Key, SpringPrecipitation.MinPrecipitation.Value);
+                monthsPrecipitation.Add(SummerPrecipitation.MinPrecipitation.Key, SummerPrecipitation.MinPrecipitation.Value);
+                monthsPrecipitation.Add(AutumnPrecipitation.MinPrecipitation.Key, AutumnPrecipitation.MinPrecipitation.Value);
 
-                return seasonsPrecipitation.Aggregate((kvp1, kvp2) => kvp1.Value < kvp2.Value ? kvp1 : kvp2);
+                return monthsPrecipitation.Aggregate((kvp1, kvp2) => kvp1.Value < kvp2.Value ? kvp1 : kvp2);
             }
+        }
+
+        private Dictionary<Season, double> GetSeasonsPrecipitationDict()
+        {
+            Dictionary<Season, double> seasonsPrecipitation = new Dictionary<Season, double>();
+
+            seasonsPrecipitation.Add(WinterPrecipitation.Season, WinterPrecipitation.TotalPrecipitation);
+            seasonsPrecipitation.Add(SpringPrecipitation.Season, SpringPrecipitation.TotalPrecipitation);
+            seasonsPrecipitation.Add(SummerPrecipitation.Season, SummerPrecipitation.TotalPrecipitation);
+            seasonsPrecipitation.Add(AutumnPrecipitation.Season, AutumnPrecipitation.TotalPrecipitation);
+
+            return seasonsPrecipitation;
         }
     }
 }

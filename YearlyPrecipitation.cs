@@ -51,10 +51,11 @@ namespace BDP_Anton_Hod
         public SeasonPrecipitation SpringPrecipitation { get; set; }
         public SeasonPrecipitation SummerPrecipitation { get; set; }
         public SeasonPrecipitation AutumnPrecipitation { get; set; }
-
+        /// <summary>
+        /// Return year's preticipation
+        /// </summary>
         public double TotalYearPreticipation
         {
-            // get total preticipation in year
             get
             {
                 return WinterPrecipitation.TotalPrecipitation + SpringPrecipitation.TotalPrecipitation +
@@ -62,6 +63,9 @@ namespace BDP_Anton_Hod
             }
         }
 
+        /// <summary>
+        /// Find season with maximum precipitation
+        /// </summary>
         public KeyValuePair<Season, double> MaxSeasonPrecipitation
         {
             get
@@ -69,7 +73,9 @@ namespace BDP_Anton_Hod
                 return GetSeasonsPrecipitationDict().Aggregate((kvp1, kvp2) => kvp1.Value > kvp2.Value ? kvp1 : kvp2);
             }
         }
-
+        /// <summary>
+        /// Find season with minimum precipitation
+        /// </summary>
         public KeyValuePair<Season, double> MinSeasonPrecipitation
         {
             get
@@ -77,10 +83,11 @@ namespace BDP_Anton_Hod
                 return GetSeasonsPrecipitationDict().Aggregate((kvp1, kvp2) => kvp1.Value < kvp2.Value ? kvp1 : kvp2);
             }
         }
-
+        /// <summary>
+        /// Find month with maximum preticipation
+        /// </summary>
         public KeyValuePair<Month, double> MaxMonthPrecipitation
         {
-            // get month with maximum preticipation
             get 
             {
                 Dictionary<Month, double> monthsPrecipitation = new Dictionary<Month, double>();
@@ -93,10 +100,11 @@ namespace BDP_Anton_Hod
                 return monthsPrecipitation.Aggregate((kvp1, kvp2) => kvp1.Value > kvp2.Value ? kvp1 : kvp2);
             }
         }
-
+        /// <summary>
+        /// Find month with minimum preticipation
+        /// </summary>
         public KeyValuePair<Month, double> MinMonthPrecipitation
         {
-            // get month with minimum preticipation
             get
             {
                 Dictionary<Month, double> monthsPrecipitation = new Dictionary<Month, double>();
@@ -109,7 +117,9 @@ namespace BDP_Anton_Hod
                 return monthsPrecipitation.Aggregate((kvp1, kvp2) => kvp1.Value < kvp2.Value ? kvp1 : kvp2);
             }
         }
-
+        /// <summary>
+        /// Build Dictionary with seasons precipitation
+        /// </summary>
         private Dictionary<Season, double> GetSeasonsPrecipitationDict()
         {
             Dictionary<Season, double> seasonsPrecipitation = new Dictionary<Season, double>();

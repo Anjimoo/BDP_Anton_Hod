@@ -13,16 +13,17 @@ namespace BDP_Anton_Hod
         private string _fileName { get; set; }
         private List<YearlyPrecipitation> _rows { get; set; }
 
+        public double AveragePrecipitatinOverYears { get; set; }
         public double MaxPrecipitationYear { get; set; }
         public double MinPrecipitationYear { get; set; }
-
-        public int YearMaxSeason{ get; set; }
+        public int YearMaxMonth { get; set; }
+        public int YearMinMonth { get; set; }
+        public KeyValuePair<Month, double> MaxMonthPrecipitation { get; set; }
+        public KeyValuePair<Month, double> MinMonthPrecipitation { get; set; }
+        public int YearMaxSeason { get; set; }
         public int YearMinSeason { get; set; }
-
         public KeyValuePair<Season, double> MaxSeasonPrecipitation { get; set; }
-
         public KeyValuePair<Season, double> MinSeasonPrecipitation { get; set; }
-
 
         public StandartAnalysis(string fileName)
         {
@@ -32,19 +33,27 @@ namespace BDP_Anton_Hod
         public void Analyse()
         {
             _rows = FileParser.ParseFile(_fileName);
-
-            // SetMinMaxPrecipitationYears();
-
+            SetAveragePrecipitationOverYears();
+            SetMinMaxPrecipitationYears();
+            SetMinMaxMonthPrecipitationYear();
             SetMinMaxSeasonPrecipitationYear();
         }
 
+        private void SetAveragePrecipitationOverYears()
+        {
+
+        }
         private void SetMinMaxPrecipitationYears()
         {
             // TODO
-            _rows.Aggregate((kvp1, kvp2) => kvp1.TotalYearPreticipation > kvp2.TotalYearPreticipation ? kvp1 : kvp2);
-
+            //_rows.Aggregate((kvp1, kvp2) => kvp1.TotalYearPreticipation > kvp2.TotalYearPreticipation ? kvp1 : kvp2);
         }
 
+        private void SetMinMaxMonthPrecipitationYear()
+        {
+            //TODO
+        }
+       
         private void SetMinMaxSeasonPrecipitationYear()
         {
             // get year of season with maximum precipitation

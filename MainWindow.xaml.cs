@@ -42,7 +42,7 @@ namespace BDP_Anton_Hod
                 consoleTextBlock.Text = "Imported file is : " + dialog.FileName;
             }
         }
-
+        // standart Analysis
         private void standartButton_Click(object sender, RoutedEventArgs e)
         {
             StandartAnalysis standartAnalysis = new StandartAnalysis(this.FileName);
@@ -52,7 +52,7 @@ namespace BDP_Anton_Hod
             consoleTextBlock.Text += MessageCreator.YearSeasonMinPrecipitationMessage(standartAnalysis.YearMinSeason, standartAnalysis.MinSeasonPrecipitation);
 
         }
-
+        // Map Reduce Analysis
         private void MRButton_Click(object sender, RoutedEventArgs e)
         {
 

@@ -68,6 +68,8 @@ namespace BDP_Anton_Hod
             ConsoleText += MessageCreator.MakeAverageMessage(standartAnalysis.AveragePrecipitatinOverYears);
             ConsoleText += MessageCreator.MakeMaximumMessage(standartAnalysis.MaxYear, standartAnalysis.MaxPrecipitationYear);
             ConsoleText += MessageCreator.MakeMinimumMessage(standartAnalysis.MinYear, standartAnalysis.MinPrecipitationYear);
+            ConsoleText += MessageCreator.MakeMaximumMessage(standartAnalysis.YearMaxMonth, standartAnalysis.MaxMonthPrecipitation);
+            ConsoleText += MessageCreator.MakeMinimumMessage(standartAnalysis.YearMinMonth, standartAnalysis.MinMonthPrecipitation);
             ConsoleText += MessageCreator.MakeMaximumMessage(standartAnalysis.YearMaxSeason, standartAnalysis.MaxSeasonPrecipitation);
             ConsoleText += MessageCreator.MakeMinimumMessage(standartAnalysis.YearMinSeason, standartAnalysis.MinSeasonPrecipitation);
 

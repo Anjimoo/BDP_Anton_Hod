@@ -23,7 +23,8 @@ namespace BDP_Anton_Hod
 
         public async Task AnalyseSync()
         {
-            
+            _rows = FileParser.ParseFile(_fileName);
+
         }
     }
 }

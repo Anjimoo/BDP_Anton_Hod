@@ -30,9 +30,9 @@ namespace BDP_Anton_Hod
             _fileName = fileName;
         }
 
-        public void Analyse()
+        public void Analyse(List<YearlyPrecipitation> _rows)
         {
-            _rows = FileParser.ParseFile(_fileName);
+            this._rows = _rows;
             SetAveragePrecipitationOverYears();
             SetMinMaxPrecipitationYears();
             SetMinMaxMonthPrecipitationYear();

@@ -61,8 +61,10 @@ namespace BDP_Anton_Hod
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
 
+            List<YearlyPrecipitation> _rows = FileParser.ParseFile(FileName);
+
             StandartAnalysis standartAnalysis = new StandartAnalysis(this.FileName);
-            standartAnalysis.Analyse();
+            standartAnalysis.Analyse(_rows);
             ConsoleText += MessageCreator.MakeMaximumMessage(standartAnalysis.YearMaxSeason, standartAnalysis.MaxSeasonPrecipitation);
             ConsoleText += MessageCreator.MakeMinimumMessage(standartAnalysis.YearMinSeason, standartAnalysis.MinSeasonPrecipitation);
 

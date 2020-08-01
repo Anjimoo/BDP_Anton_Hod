@@ -23,7 +23,7 @@ namespace BDP_Anton_Hod
         /// <summary>
         /// Return year's preticipation
         /// </summary>
-        public double TotalYearPreticipation
+        public double TotalYearPrecipitation
         {
             get
             {

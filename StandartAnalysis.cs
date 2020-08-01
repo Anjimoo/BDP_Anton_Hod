@@ -46,7 +46,6 @@ namespace BDP_Anton_Hod
         private void SetMinMaxPrecipitationYears()
         {
             // TODO
-            //_rows.Aggregate((kvp1, kvp2) => kvp1.TotalYearPreticipation > kvp2.TotalYearPreticipation ? kvp1 : kvp2);
         }
 
         private void SetMinMaxMonthPrecipitationYear()

@@ -5,13 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BDP_Anton_Hod"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="820" SizeToContent="Manual" Topmost="True" ResizeMode="NoResize">
+        Title="MainWindow" Height="480" SizeToContent="Width" Topmost="True" MinWidth="1000" MinHeight="480"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <Button x:Name="standartButton" Content="Standart Data Analysis" HorizontalAlignment="Left" VerticalAlignment="Top" Click="standartButton_Click" Height="80" Width="200" Margin="155,60,0,0"/>
-        <Button x:Name="MRButton" Content="Map Reduce Data Analysis" HorizontalAlignment="Left" Margin="460,60,0,0" VerticalAlignment="Top" Width="200" Height="80" IsDefault="True" Click="MRButton_Click"/>
-        <Border x:Name="textBlockBorder" BorderThickness="1" BorderBrush="Black" Width="700" Height="237" Margin="50,170,50,27">
-            <TextBlock x:Name="consoleTextBlock" HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="234" Width="698"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="500"/>
+            <ColumnDefinition MinWidth="500"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" MaxHeight="2000"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="importButton" Grid.Row="0" Grid.ColumnSpan="2" Padding="8" Background="AliceBlue" FontSize="15" FontWeight="Bold" Content="Import File" HorizontalAlignment="Center" Click="importButton_Click"/>
+        <Button x:Name="standartButton" Grid.Row="1" Grid.Column="0" Background="AliceBlue" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Content="Standart Data Analysis" Click="standartButton_Click" />
+        <Button x:Name="MRButton" Grid.Row="1" Grid.Column="1" Background="AliceBlue" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Content="Map Reduce Data Analysis" IsDefault="True" Click="MRButton_Click"/>
+        <Border x:Name="textBlockBorder" Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="1" BorderBrush="Black" Margin="5" Padding="5">
+            <ScrollViewer>
+                <TextBlock Text="{Binding Path=ConsoleText}" Grid.Row="2" Grid.ColumnSpan="2" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+            </ScrollViewer>
         </Border>
-        <Button x:Name="importButton" Content="Import File" HorizontalAlignment="Center" Margin="0,19,0,0" VerticalAlignment="Top" Height="27" Width="160" Click="importButton_Click"/>
+
     </Grid>
 </Window>

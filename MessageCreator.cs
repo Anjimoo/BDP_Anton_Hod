@@ -22,7 +22,7 @@ namespace BDP_Anton_Hod
         }
         public static string MakeMaximumMessage(int year, double numOfPrecipitation) 
         {
-            string message = "";
+            string message = $"\nThe year with max precipitation is: {year}, and number of precipitation is: {numOfPrecipitation}";
             return message;
         }
         
@@ -39,12 +39,12 @@ namespace BDP_Anton_Hod
         }
         public static string MakeMinimumMessage(int year, double numOfPrecipitation)
         {
-            string message = "";
+            string message = $"\n The year with min precipitation is: {year}, and number of precipitation is: {numOfPrecipitation}";
             return message;
         }
         public static string MakeAverageMessage(double average)
         { 
-            string message = "";
+            string message = "\nThe Average is:" + average ;
             return message; 
         }
 

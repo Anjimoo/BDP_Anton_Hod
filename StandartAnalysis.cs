@@ -41,12 +41,20 @@ namespace BDP_Anton_Hod
 
         private void SetAveragePrecipitationOverYears()
         {
-            
+            double sum = 0;
+            foreach (var row in _rows)
+            {
+                sum += row.TotalYearPrecipitation;
+     
+            }
+            AveragePrecipitatinOverYears = sum / _rows.Count;
         }
 
         private void SetMinMaxPrecipitationYears()
         {
-            // TODO
+
+           var MaxPrecipitationYears = _rows.Aggregate((kvp1, kvp2) => kvp1.TotalYearPrecipitation > kvp2.TotalYearPrecipitation ? kvp1 : kvp2).Year;
+
         }
 
         private void SetMinMaxMonthPrecipitationYear()

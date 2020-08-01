@@ -12,7 +12,8 @@ namespace BDP_Anton_Hod
     {
         private string _fileName { get; set; }
         private List<YearlyPrecipitation> _rows { get; set; }
-
+        public int MaxYear { get; set; }
+        public int MinYear { get; set; }
         public double AveragePrecipitatinOverYears { get; set; }
         public double MaxPrecipitationYear { get; set; }
         public double MinPrecipitationYear { get; set; }
@@ -53,13 +54,20 @@ namespace BDP_Anton_Hod
         private void SetMinMaxPrecipitationYears()
         {
 
-           var MaxPrecipitationYears = _rows.Aggregate((kvp1, kvp2) => kvp1.TotalYearPrecipitation > kvp2.TotalYearPrecipitation ? kvp1 : kvp2).Year;
-
+           var MaxPrecipitationYear = _rows.Aggregate((kvp1, kvp2) => kvp1.TotalYearPrecipitation > kvp2.TotalYearPrecipitation ? kvp1 : kvp2);
+            MaxYear = MaxPrecipitationYear.Year;
+            var MinPrecipitationYear = _rows.Aggregate((kvp1, kvp2) => kvp1.TotalYearPrecipitation < kvp2.TotalYearPrecipitation ? kvp1 : kvp2);
+            MinYear = MinPrecipitationYear.Year;
         }
 
         private void SetMinMaxMonthPrecipitationYear()
         {
-            //TODO
+            var MaxPrecipitationYear = _rows.Aggregate((kvp1, kvp2) => kvp1.MaxMonthPrecipitation.Value > kvp2.MaxMonthPrecipitation.Value ? kvp1 : kvp2);
+            MaxMonthPrecipitation = MaxPrecipitationYear.MaxMonthPrecipitation;
+
+            var MinPrecipitationYear = _rows.Aggregate((kvp1, kvp2) => kvp1.MinMonthPrecipitation.Value < kvp2.MinMonthPrecipitation.Value ? kvp1 : kvp2);
+            MinMonthPrecipitation = MinPrecipitationYear.MinMonthPrecipitation;
+
         }
        
         private void SetMinMaxSeasonPrecipitationYear()

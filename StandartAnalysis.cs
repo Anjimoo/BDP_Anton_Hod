@@ -57,21 +57,13 @@ namespace BDP_Anton_Hod
         private void SetMinMaxSeasonPrecipitationYear()
         {
             // get year of season with maximum precipitation
-            YearMaxSeason = _rows.Aggregate((kvp1, kvp2) => kvp1.MaxSeasonPrecipitation.Value > kvp2.MaxSeasonPrecipitation.Value ? kvp1 : kvp2).Year;
+            var maxYear = _rows.Aggregate((kvp1, kvp2) => kvp1.MaxSeasonPrecipitation.Value > kvp2.MaxSeasonPrecipitation.Value ? kvp1 : kvp2);
             // get year of season with minimum precipitation
-            YearMinSeason = _rows.Aggregate((kvp1, kvp2) => kvp1.MinSeasonPrecipitation.Value < kvp2.MinSeasonPrecipitation.Value ? kvp1 : kvp2).Year;
-           // find years of seasons with maximum and minimum precipitation in year and set to propertie
-            foreach (var row in _rows)
-            {
-                if(row.Year == YearMaxSeason)
-                {
-                    MaxSeasonPrecipitation = row.MaxSeasonPrecipitation;
-                }
-                if(row.Year == YearMinSeason)
-                {
-                    MinSeasonPrecipitation = row.MinSeasonPrecipitation;
-                }
-            }
+            var minYear = _rows.Aggregate((kvp1, kvp2) => kvp1.MinSeasonPrecipitation.Value < kvp2.MinSeasonPrecipitation.Value ? kvp1 : kvp2);
+
+            MaxSeasonPrecipitation = maxYear.MaxSeasonPrecipitation;
+            MinSeasonPrecipitation = minYear.MinSeasonPrecipitation;
+          
         }
     }
 }

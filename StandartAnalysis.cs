@@ -41,8 +41,9 @@ namespace BDP_Anton_Hod
 
         private void SetAveragePrecipitationOverYears()
         {
-
+            
         }
+
         private void SetMinMaxPrecipitationYears()
         {
             // TODO

@@ -6,7 +6,7 @@ namespace BDP_Anton_Hod
     public class SeasonPrecipitation
     {
         public Season Season { get; set; }
-        public Dictionary<Month, double> MonthlyPrecipitation { get; } = new Dictionary<Month, double>(4);
+        public Dictionary<Month, double> MonthlyPrecipitation { get; } = new Dictionary<Month, double>(3);
 
         // total season precipitation
         public double TotalPrecipitation

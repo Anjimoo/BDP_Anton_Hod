@@ -21,9 +21,9 @@ namespace BDP_Anton_Hod
         public KeyValuePair<Season, double> MaxSeasonPrecipitation { get; set; }
         public KeyValuePair<Season, double> MinSeasonPrecipitation { get; set; }
 
-        //public async Task AnalyseSync()
-        //{
-
-        //}
+        public async Task AnalyseSync()
+        {
+            
+        }
     }
 }

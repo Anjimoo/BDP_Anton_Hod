@@ -21,6 +21,7 @@ namespace BDP_Anton_Hod
                 YearlyPrecipitation row = new YearlyPrecipitation
                 {
                     Year = (int)reader.GetDouble(0),
+          
                     WinterPrecipitation = new SeasonPrecipitation
                     {
                         Season = Season.Winter,
@@ -68,15 +69,6 @@ namespace BDP_Anton_Hod
             return list;
         }
 
-        public static IExcelDataReader openExcelFile(string fileName)
-        {
-            var stream = File.Open(fileName, FileMode.Open, FileAccess.Read);
-
-            IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
-
-
-            return reader;
-
-        }
+ 
     }
 }

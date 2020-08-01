@@ -16,6 +16,7 @@ namespace BDP_Anton_Hod
     public class YearlyPrecipitation
     {
         public int Year { get; set; }
+
         public SeasonPrecipitation WinterPrecipitation { get; set; }
         public SeasonPrecipitation SpringPrecipitation { get; set; }
         public SeasonPrecipitation SummerPrecipitation { get; set; }

@@ -27,8 +27,8 @@
         </Grid.RowDefinitions>
 
         <Button x:Name="importButton" Grid.Row="0" Grid.ColumnSpan="2" Padding="8" Background="AliceBlue" FontSize="15" FontWeight="Bold" Content="Import File" HorizontalAlignment="Center" Click="importButton_Click"/>
-        <Button x:Name="standartButton" Grid.Row="1" Grid.Column="0" Background="AliceBlue" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Content="Standart Data Analysis" Click="standartButton_Click" />
-        <Button x:Name="MRButton" Grid.Row="1" Grid.Column="1" Background="AliceBlue" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Content="Map Reduce Data Analysis" IsDefault="True" Click="MRButton_Click"/>
+        <Button x:Name="standartButton" Grid.Row="1" Grid.Column="0" IsEnabled="False" Background="AliceBlue" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Content="Standard Data Analysis" Click="standardButton_Click" />
+        <Button x:Name="MRButton" Grid.Row="1" Grid.Column="1" IsEnabled="False" Background="AliceBlue" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Content="Map Reduce Data Analysis" IsDefault="True" Click="MRButton_Click"/>
         <Border x:Name="textBlockBorder" Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="1" BorderBrush="Black" Margin="5" Padding="5">
             <ScrollViewer>
                 <TextBlock Text="{Binding Path=ConsoleText}" Grid.Row="2" Grid.ColumnSpan="2" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto"

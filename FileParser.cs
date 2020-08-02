@@ -15,16 +15,15 @@ namespace BDP_Anton_Hod
             using var stream = File.Open(filePath, FileMode.Open, FileAccess.Read);
             using IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
             List<YearlyPrecipitation> list = new List<YearlyPrecipitation>();
-            
+            // read line in Excel File
             while (reader.Read())
             {
-                YearlyPrecipitation row = new YearlyPrecipitation
+                YearlyPrecipitation row = new YearlyPrecipitation // for each line in Excel create YearlPrecipitation object
                 {
-                    Year = (int)reader.GetDouble(0),
-          
-                    WinterPrecipitation = new SeasonPrecipitation
+                    YearName = (int)reader.GetDouble(0), 
+                    WinterPrecipitation = new SeasonPrecipitation 
                     {
-                        Season = Season.Winter,
+                        SeasonName = Season.Winter,
                         MonthlyPrecipitation =
                         {
                             { Month.December, reader.GetDouble(12) },
@@ -34,7 +33,7 @@ namespace BDP_Anton_Hod
                     },
                     SpringPrecipitation = new SeasonPrecipitation
                     {
-                        Season = Season.Spring,
+                        SeasonName = Season.Spring,
                         MonthlyPrecipitation = 
                         {
                             { Month.March, reader.GetDouble(3) },
@@ -44,7 +43,7 @@ namespace BDP_Anton_Hod
                     },
                     SummerPrecipitation = new SeasonPrecipitation
                     {
-                        Season = Season.Summer,
+                        SeasonName = Season.Summer,
                         MonthlyPrecipitation =
                         {
                             { Month.June, reader.GetDouble(6) },
@@ -54,7 +53,7 @@ namespace BDP_Anton_Hod
                     },
                     AutumnPrecipitation = new SeasonPrecipitation
                     {
-                        Season = Season.Autumn,
+                        SeasonName = Season.Autumn,
                         MonthlyPrecipitation =
                         {
                             { Month.September, reader.GetDouble(9) },

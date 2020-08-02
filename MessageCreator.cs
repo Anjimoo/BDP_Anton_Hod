@@ -6,10 +6,13 @@ using System.Windows.Input;
 
 namespace BDP_Anton_Hod
 {
+    /// <summary>
+    /// Just string manipulation
+    /// </summary>
     static class MessageCreator
     {
         private static StringBuilder stringBuilder = new StringBuilder();
-
+        
         public static string MakeAverageMessage(double average)
         {
             string message = "\nThe Average is:" + average;

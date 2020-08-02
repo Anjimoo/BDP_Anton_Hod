@@ -1,19 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 
 
@@ -26,6 +15,8 @@ namespace BDP_Anton_Hod
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private string _consoleText;
+
+        private List<YearlyPrecipitation> _rows { get; set; }
         public string ConsoleText
         {
             get => _consoleText;
@@ -55,16 +46,22 @@ namespace BDP_Anton_Hod
                 this.FileName = dialog.FileName;
                 ConsoleText = "Imported file is : " + dialog.FileName;
             }
+            _rows = FileParser.ParseFile(FileName);
+            if(_rows != null)
+            {
+                MRButton.IsEnabled = true;
+                standartButton.IsEnabled = true;
+            }
         }
         // standart Analysis
-        private void standartButton_Click(object sender, RoutedEventArgs e)
+        private void standardButton_Click(object sender, RoutedEventArgs e)
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
 
-            List<YearlyPrecipitation> _rows = FileParser.ParseFile(FileName);
-
-            StandartAnalysis standartAnalysis = new StandartAnalysis(this.FileName);
+            StandardAnalysis standartAnalysis = new StandardAnalysis(this.FileName);
             standartAnalysis.Analyse(_rows);
+
+            ConsoleText += "\nStandard analysis";
             ConsoleText += MessageCreator.MakeAverageMessage(standartAnalysis.AveragePrecipitatinOverYears);
             ConsoleText += MessageCreator.MakeMaximumMessage(standartAnalysis.MaxYear, standartAnalysis.MaxPrecipitationYear);
             ConsoleText += MessageCreator.MakeMinimumMessage(standartAnalysis.MinYear, standartAnalysis.MinPrecipitationYear);
@@ -81,7 +78,24 @@ namespace BDP_Anton_Hod
         // Map Reduce Analysis
         private void MRButton_Click(object sender, RoutedEventArgs e)
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
 
+            MapReduceAnalysis mapReduceAnalysis = new MapReduceAnalysis();
+            mapReduceAnalysis.Analyse(_rows);
+
+            ConsoleText += "\nMapReduce analysis";
+            ConsoleText += MessageCreator.MakeAverageMessage(mapReduceAnalysis.AveragePrecipitatinOverYears);
+            ConsoleText += MessageCreator.MakeMaximumMessage(mapReduceAnalysis.MaxYear, mapReduceAnalysis.MaxPrecipitationYear);
+            ConsoleText += MessageCreator.MakeMinimumMessage(mapReduceAnalysis.MinYear, mapReduceAnalysis.MinPrecipitationYear);
+            ConsoleText += MessageCreator.MakeMaximumMessage(mapReduceAnalysis.YearMaxMonth, mapReduceAnalysis.MaxMonthPrecipitation);
+            ConsoleText += MessageCreator.MakeMinimumMessage(mapReduceAnalysis.YearMinMonth, mapReduceAnalysis.MinMonthPrecipitation);
+            ConsoleText += MessageCreator.MakeMaximumMessage(mapReduceAnalysis.YearMaxSeason, mapReduceAnalysis.MaxSeasonPrecipitation);
+            ConsoleText += MessageCreator.MakeMinimumMessage(mapReduceAnalysis.YearMinSeason, mapReduceAnalysis.MinSeasonPrecipitation);
+
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+
+            ConsoleText += $"\nTotal execution time: { elapsedMs}";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

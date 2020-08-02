@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using Microsoft.Win32;
+using System.Diagnostics;
 
 
 
@@ -17,6 +18,7 @@ namespace BDP_Anton_Hod
         private string _consoleText;
 
         private List<YearlyPrecipitation> _rows { get; set; }
+        public Process MyProcess { get; set; }
         public string ConsoleText
         {
             get => _consoleText;
@@ -51,12 +53,14 @@ namespace BDP_Anton_Hod
             {
                 MRButton.IsEnabled = true;
                 standartButton.IsEnabled = true;
+                MyProcess = Process.GetCurrentProcess();
             }
         }
         // standart Analysis
         private void standardButton_Click(object sender, RoutedEventArgs e)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            var watch = Stopwatch.StartNew();
+            MyProcess.Refresh();
 
             StandardAnalysis standartAnalysis = new StandardAnalysis(this.FileName);
             standartAnalysis.Analyse(_rows);
@@ -74,12 +78,13 @@ namespace BDP_Anton_Hod
             var elapsedMs = watch.ElapsedMilliseconds;
 
             ConsoleText += $"\nTotal execution time: { elapsedMs}";
+            ConsoleText += $"\nMemory usage is : {MyProcess.PeakWorkingSet64}";
         }
         // Map Reduce Analysis
         private void MRButton_Click(object sender, RoutedEventArgs e)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-
+            var watch = Stopwatch.StartNew();
+            MyProcess.Refresh();
             MapReduceAnalysis mapReduceAnalysis = new MapReduceAnalysis();
             mapReduceAnalysis.Analyse(_rows);
 
@@ -96,6 +101,7 @@ namespace BDP_Anton_Hod
             var elapsedMs = watch.ElapsedMilliseconds;
 
             ConsoleText += $"\nTotal execution time: { elapsedMs}";
+            ConsoleText += $"\nMemory usage is : {MyProcess.PeakWorkingSet64}";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
